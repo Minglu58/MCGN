@@ -30,19 +30,113 @@ The datasets used in this experiment can be downloaded from [URMP-VAT](https://s
 
 You can download these processed datasets to `datasets` folder.
 
+## Testing
+### Sample Short-Time Videos
+- `resolution`: resolution used in crop data 
+- `model_path`: path to pre-trained checkpoint
+- `n_sample`: the number of videos need to be sampled
+- `text_stft_cond`: load text-audio-video data
+- `audio_emb_model`: model to encode audio, choices: `audioclip`, `wav2clip`, `beats`
+- `text_emb_model`: model to encode text, choices: `bert`, `clip`
+- `data_path`: path to dataset, `post_URMP` for URMP-VAT dataset, and `post_landscape` for Landscape-VAT dataset
+- `load_vid_len`: for URMP-VAT, it is set to `90` (fps=30); for Landscape-VAT, it is set to `30` (fps=10)
+- `use_temporal_con`: whether to use temporal_conv layers in sampling procedure; if not, the generated content will not have temporal information
+- `dataset`: dataset used in each run
+- `run`: index for each run
+```
+python scripts/sample_tia_eval.py --resolution 64 \
+                                --image_size 64 \
+                                --batch_size 4 \
+                                --diffusion_steps 4000 \
+                                --noise_schedule cosine \
+                                --num_channels 64 \
+                                --num_res_blocks 2 \
+                                --class_cond False \
+                                --model_path saved_ckpts/path_to_your_checkpoint.pt \
+                                --num_samples 50 \
+                                --learn_sigma True \
+                                --text_stft_cond \
+                                --audio_emb_model beats \
+                                --text_emb_model clip \
+                                --data_path datasets/path_to_your_data_folder \
+                                --load_vid_len 90 \
+                                --in_channels 3 \
+                                --clip_denoised True \
+                                --use_temporal_conv True \
+                                --dataset urmp \
+                                --run 0
+```
+### Evaluation
+The generated samples will be organized in this form:
+```
+0_urmp
+  |---real
+    |---video_0.mp4
+    |---video_1.mp4
+    |---...
+    |---video_49.mp4
+  |---fake
+    |---video_0.mp4
+    |---video_1.mp4
+    |---...
+    |---video_49.mp4
+  |---audio
+    |---video_0.wav
+    |---video_1.wav
+    |---...
+    |---video_49.wav
+  |---txt
+    |---video_0.txt
+    |---video_1.txt
+    |---...
+    |---video_49.txt
+```
+
+- `exp_tag`: folder name of generated samples
+- `real_folder`: ground-truth video folder name
+- `fake_folder`: generated video folder name
+- `video_folder`: generated video folder name
+- `audio_folder`: original audio folder name
+- `txt_folder`: original text folder name
+* **FVD**
+```
+python calculation/fvd_fid/fvd.py --exp_tag 0_urmp --real_folder real --fake_folder fake
+```
+* **FID**
+```
+python calculation/fvd_fid/fid_pytorch.py --exp_tag 0_urmp --real_folder real --fake_folder fake
+```
+* **AV-align**
+```
+python calculation/audio_video_align.py --exp_tag 0_urmp --audio_folder audio --video_folder fake
+```
+* **CLIP-audio**
+```
+python calculation/clip_score/clip_audio.py --exp_tag 0_urmp --audio_folder audio --video_folder fake
+```
+* **CLIP-text**
+```
+python calculation/clip_score/clip_text.py --exp_tag 0_urmp --txt_folder txt --video_folder fake
+```
+
+## Training
+### Training Spatial Layers
+
+### Training Temporal Layers
+
+
 ## Demos
-### Music Performance Videos
 
-![video_1](https://github.com/user-attachments/assets/fdbad527-92b2-4125-b3b2-54982d5dfd51)
-![video_3](https://github.com/user-attachments/assets/78a4f303-1bb7-4d3d-8e26-03799d341da5)
-![video_16](https://github.com/user-attachments/assets/5634f354-2108-44b3-be7c-3f9129c43e9d)
-![video_17](https://github.com/user-attachments/assets/41373957-1fce-4726-8d78-9c9b1b6694b8)
-![video_28](https://github.com/user-attachments/assets/ace99557-606b-4cb2-b384-afd864828fd0)
+https://github.com/user-attachments/assets/51de058f-d388-420b-9ed6-adaf6d493448
 
+https://github.com/user-attachments/assets/05cb998b-ace1-44c6-babe-98953e2bd3dd
 
-### Landscape Videos
-![video_43](https://github.com/user-attachments/assets/927ed211-4280-42df-83bd-605a816e215c)
-![video_47](https://github.com/user-attachments/assets/d5f0ae5a-5fa3-4f05-a76a-13699d86cee9)
+https://github.com/user-attachments/assets/c6aa94be-66bc-46e0-a149-836db34f88f5
+
+https://github.com/user-attachments/assets/9c35abf7-298c-4a6d-9963-3203fdadf9c0
+
+https://github.com/user-attachments/assets/ac4d6608-743b-47e4-a64a-a1935f9b5aef
+
 
 ## Acknowledgement
 
