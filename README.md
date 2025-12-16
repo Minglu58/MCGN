@@ -94,8 +94,7 @@ The generated samples will be organized in this form:
 
 - `exp_tag`: folder name of generated samples
 - `real_folder`: ground-truth video folder name
-- `fake_folder`: generated video folder name
-- `video_folder`: generated video folder name
+- `fake_folder`/`video_folder`: generated video folder name
 - `audio_folder`: original audio folder name
 - `txt_folder`: original text folder name
 * **FVD**
