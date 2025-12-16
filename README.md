@@ -31,7 +31,7 @@ The datasets used in this experiment can be downloaded from [URMP-VAT](https://s
 You can download these processed datasets to `datasets` folder.
 
 ## 📚 Testing
-### Sample Short-Time Videos
+### 📹 Sample Short-Time Videos
 - `resolution`: resolution used in crop data 
 - `model_path`: path to pre-trained checkpoint
 - `n_sample`: the number of videos need to be sampled
@@ -66,7 +66,7 @@ python scripts/sample_tia_eval.py --resolution 64 \
                                 --dataset urmp \
                                 --run 0
 ```
-### Evaluation
+### 📄 Evaluation
 The generated samples will be organized in this form:
 ```
 0_urmp
@@ -118,11 +118,60 @@ python calculation/clip_score/clip_audio.py --exp_tag 0_urmp --audio_folder audi
 python calculation/clip_score/clip_text.py --exp_tag 0_urmp --txt_folder txt --video_folder fake
 ```
 
-## Training
-### Training Spatial Layers
+## 📖 Training
+### 🪜 Training Spatial Layers
 
-### Training Temporal Layers
-
+```
+python scripts/train_tia.py --num_workers 8 \
+                            --batch_size 4 \
+                            --data_path datasets/path_to_your_data_folder/ \
+                            --load_vid_len 90 \
+                            --save_dir saved_ckpts/path_to_save_checkpoints/ \
+                            --resolution 64 \
+                            --image_size 64 \
+                            --sequence_length 16 \
+                            --text_stft_cond \
+                            --audio_emb_model beats \
+                            --diffusion_steps 4000 \
+                            --noise_schedule cosine \
+                            --num_channels 64 \
+                            --num_res_blocks 2 \
+                            --class_cond False \
+                            --learn_sigma True \
+                            --in_channels 3 \
+                            --lr 5e-5 \
+                            --log_interval 50 \
+                            --save_interval 5000 \
+                            --gpus 1 \
+                            --use_temporal_conv False \
+```                           
+### 🪂 Training Temporal Layers
+```
+python scripts/train_tia_colla.py --num_workers 8 \
+                            --batch_size 1 \
+                            --data_path datasets/path_to_your_data_folder \
+                            --load_vid_len 90 \
+                            --save_dir saved_ckpts/path_to_save_checkpoints \
+                            --resolution 64 \
+                            --image_size 64 \
+                            --sequence_length 16 \
+                            --text_stft_cond \
+                            --audio_emb_model beats \
+                            --diffusion_steps 4000 \
+                            --noise_schedule cosine \
+                            --num_channels 64 \
+                            --num_res_blocks 2 \
+                            --class_cond False \
+                            --learn_sigma True \
+                            --in_channels 3 \
+                            --lr 5e-5 \
+                            --log_interval 10 \
+                            --save_interval 1000 \
+                            --gpus 1 \
+                            --use_temporal_conv True \
+                            --colla_model True \
+                            --model_path saved_ckpts/path_to_first_stage_checkpoint.pt \
+```
 
 ## 🎢 Demos
 
