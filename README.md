@@ -5,7 +5,7 @@ This is the official implement of our MCGN model. We introduce Multimodal Collab
 <img width="959" height="377" alt="colla_model" src="https://github.com/user-attachments/assets/20ec9a08-1c1f-4750-87f6-9e2df71e7063" />
 
 
-## Setup
+## ⚙️ Setup
 1. Create the virtual environment
 ```bash
 conda create -n mcgn python==3.9
@@ -25,12 +25,12 @@ pip install -r requirements.txt
 
 You can access the source at [Vit-Lens](https://github.com/TencentARC/ViT-Lens/tree/main/vitlens/src) repository.
 
-## Datasets
+## 📊 Datasets
 The datasets used in this experiment can be downloaded from [URMP-VAT](https://studentmust-my.sharepoint.com/:u:/g/personal/3220000901_student_must_edu_mo/IQAs0Egt-kv3QJzrTsormgmfAZoSXk9QgB55tlsnOWd5Q1g) and [Landscape-VAT](https://studentmust-my.sharepoint.com/:u:/g/personal/3220000901_student_must_edu_mo/IQDlZuoqMJgoTLrgpBntAKUmARW2MSOxGy1u3iYagSDotDk).
 
 You can download these processed datasets to `datasets` folder.
 
-## Testing
+## 📚 Testing
 ### Sample Short-Time Videos
 - `resolution`: resolution used in crop data 
 - `model_path`: path to pre-trained checkpoint
@@ -125,7 +125,7 @@ python calculation/clip_score/clip_text.py --exp_tag 0_urmp --txt_folder txt --v
 ### Training Temporal Layers
 
 
-## Demos
+## 🎢 Demos
 
 https://github.com/user-attachments/assets/51de058f-d388-420b-9ed6-adaf6d493448
 
@@ -138,6 +138,6 @@ https://github.com/user-attachments/assets/9c35abf7-298c-4a6d-9963-3203fdadf9c0
 https://github.com/user-attachments/assets/ac4d6608-743b-47e4-a64a-a1935f9b5aef
 
 
-## Acknowledgement
+## 🙏 Acknowledgement
 
 The code is based on [Latent-Diffusion](https://github.com/CompVis/latent-diffusion) and [Vit-Lens](https://github.com/TencentARC/ViT-Lens). Thanks to the authors for their significant contributions.
