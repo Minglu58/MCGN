@@ -26,9 +26,9 @@ pip install -r requirements.txt
 
 You can access the source at [Vit-Lens](https://github.com/TencentARC/ViT-Lens/tree/main/vitlens/src) repository.
 
-4. Download the checkpoint of pretrained audio encoder model BEATS
+4. Download the checkpoint of pretrained audio encoder model BEATS.
 
-You can access the source at [BEATs](https://github.com/microsoft/unilm/tree/master/beats) repository.
+You can access the source at [BEATs](https://github.com/microsoft/unilm/tree/master/beats) repository. We use "BEATs_iter3_plus_AS20K.pt".
 
 ## 📊 Datasets
 The datasets used in this experiment can be downloaded from [URMP-VAT](https://studentmust-my.sharepoint.com/:u:/g/personal/3220000901_student_must_edu_mo/IQAs0Egt-kv3QJzrTsormgmfAZoSXk9QgB55tlsnOWd5Q1g) and [Landscape-VAT](https://studentmust-my.sharepoint.com/:u:/g/personal/3220000901_student_must_edu_mo/IQDlZuoqMJgoTLrgpBntAKUmARW2MSOxGy1u3iYagSDotDk).
