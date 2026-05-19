@@ -113,7 +113,11 @@ def create_id3_embedding(videos):
     assert video_batch_size in [batch_size, -1, None], "Invalid batch size"
     tensor_name = module_scope + "RGB/inception_i3d/Mean:0"
     if not _is_in_graph(tensor_name):
-        i3d_model = hub.Module(module_spec, name=module_name)
+        # i3d_model = hub.Module(module_spec, name=module_name)
+
+        LOCAL_I3D_PATH = "/fs/data/home/zhaoml_fengszlab/program/mcgn/cmgn/modules/cache/"
+        i3d_model = hub.Module(LOCAL_I3D_PATH, name=module_name)
+
         i3d_model(videos)
 
     # gets the kinetics-i3d-400-logits layer
