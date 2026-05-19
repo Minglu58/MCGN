@@ -10,14 +10,14 @@
 
 python scripts/train_tia_colla.py --num_workers 8 \
                             --batch_size 1 \
-                            --data_path datasets/post_aist_3s \
-                            --load_vid_len 30 \
-                            --save_dir saved_ckpts/aist/0519_tia_colla_128 \
-                            --model_path saved_ckpts/aist/0512_ti_128/model230000.pt \
-                            --resolution 128 \
-                            --image_size 128 \
+                            --data_path datasets/YOUR_DATASET \
+                            --load_vid_len 90 \
+                            --save_dir saved_ckpts/YOUR_SAVE_DIR \
+                            --model_path saved_ckpts/CKPT_FROM_FIRST_STAGE_PATH \
+                            --resolution 64 \
+                            --image_size 64 \
                             --sequence_length 16 \
-                            --avs \
+                            --text_stft_cond \
                             --audio_emb_model beats \
                             --diffusion_steps 4000 \
                             --noise_schedule cosine \
@@ -32,4 +32,3 @@ python scripts/train_tia_colla.py --num_workers 8 \
                             --gpus 1 \
                             --use_temporal_conv True \
                             --colla_model True
-                            # --resume_checkpoint saved_ckpts/aist/1123_tia_colla_64/model005000.pt
