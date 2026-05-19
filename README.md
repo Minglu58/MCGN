@@ -26,6 +26,10 @@ pip install -r requirements.txt
 
 You can access the source at [Vit-Lens](https://github.com/TencentARC/ViT-Lens/tree/main/vitlens/src) repository.
 
+4. Download the checkpoint of pretrained audio encoder model BEATS
+
+You can access the source at [BEATs](https://github.com/microsoft/unilm/tree/master/beats) repository.
+
 ## 📊 Datasets
 The datasets used in this experiment can be downloaded from [URMP-VAT](https://studentmust-my.sharepoint.com/:u:/g/personal/3220000901_student_must_edu_mo/IQAs0Egt-kv3QJzrTsormgmfAZoSXk9QgB55tlsnOWd5Q1g) and [Landscape-VAT](https://studentmust-my.sharepoint.com/:u:/g/personal/3220000901_student_must_edu_mo/IQDlZuoqMJgoTLrgpBntAKUmARW2MSOxGy1u3iYagSDotDk).
 
@@ -185,4 +189,4 @@ https://github.com/user-attachments/assets/ac4d6608-743b-47e4-a64a-a1935f9b5aef
 
 ## 🙏 Acknowledgement
 
-The code is based on [Latent-Diffusion](https://github.com/CompVis/latent-diffusion) and [Vit-Lens](https://github.com/TencentARC/ViT-Lens). Thanks to the authors for their significant contributions.
+The code is based on [Latent-Diffusion](https://github.com/CompVis/latent-diffusion), [Vit-Lens](https://github.com/TencentARC/ViT-Lens), and [BEATs](https://aka.ms/beats). Thanks to the authors for their significant contributions.
