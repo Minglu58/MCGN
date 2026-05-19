@@ -1,8 +1,6 @@
 """
 Generate a large batch of video samples from a model.
 """
-import sys
-sys.path.append('/fs/data/home/zhaoml_fengszlab/program/mcgn')
 import argparse
 import os
 import time
@@ -78,14 +76,6 @@ def main():
     
     # load audio
     logger.log("loading audio embedding model...")
-    # if args.audio_emb_model == 'audioclip':
-    #     audioclip_model = AudioCLIP(pretrained=f'saved_ckpts/AudioCLIP-Full-Training.pt')
-    #     audioclip_model = audioclip_model.to(dist_util.dev())
-    # elif args.audio_emb_model == 'wav2clip':
-    #     wav2clip_model = wav2clip.get_model()
-    #     wav2clip_model = wav2clip_model.to(dist_util.dev())
-    #     for p in wav2clip_model.parameters():
-    #         p.requires_grad = False
     if args.audio_emb_model == 'beats':
         checkpoint = th.load('saved_ckpts/BEATs_iter3_plus_AS20K.pt')
         cfg = BEATsConfig(checkpoint['cfg'])
@@ -94,8 +84,6 @@ def main():
         BEATs_model.load_state_dict(checkpoint['model'])
         BEATs_model.eval()
     print("loading audio embedding model successfully!")
-    # random_numbers = [random.randint(0, 3239 - 1) for _ in range(args.num_samples)]
-    # for i in random_numbers:
     # sampling
     for i in range(args.num_samples):
         batch = data.dataset.__getitem__(i) #sample_id
@@ -122,12 +110,6 @@ def main():
         else:
             audio = batch['audio'].to(dist_util.dev()) 
                
-        # if args.audio_emb_model == 'audioclip':
-        #     ((audio_embed, _, _), _), _ = audioclip_model(audio=audio)
-        #     c_temp = audio_embed.unsqueeze(0) #(1,16,1024)
-        # elif args.audio_emb_model == 'wav2clip':
-        #     audio_embed = th.from_numpy(wav2clip.embed_audio(audio.cpu().numpy(), wav2clip_model)) #(16,512)
-        #     c_temp = audio_embed.unsqueeze(1) #(16,1,512)
         if args.audio_emb_model == 'STFT':
             c_temp = stft
         elif args.audio_emb_model == 'beats':
@@ -136,10 +118,6 @@ def main():
 
         c = th.concat((c_t, c_i, c_temp), dim=1)
         c = c.to(dist_util.dev())
-
-        # a = th.rand(args.batch_size*16, args.in_channels, args.resolution, args.resolution)
-        # init_video = th.zeros_like(a)
-        # init_video[0] = batch['video'][:,0]
 
         init_video = th.zeros(
             (args.batch_size*16, args.in_channels, args.resolution, args.resolution),
@@ -166,13 +144,8 @@ def main():
             progress=True,
             skip_timesteps=10,
             init_image=init_video.to(dist_util.dev()),
-            # init_image=None,
         )
-        
-        #sample = ((sample + 1) * 127.5).clamp(0, 255).to(th.uint8)
-        #sample = sample.permute(0, 2, 3, 4, 1)
-        #sample = sample.contiguous()
-        #print('samples:', sample.shape) #torch.Size([1, 256, 16, 8, 8])
+
 
         sample = rearrange(sample, '(b f) c h w -> b c f h w', f=16)
         sample_recon = th.clamp(sample, -0.5, 0.5)
@@ -183,9 +156,6 @@ def main():
         
         os.makedirs("./results/%d_%s/fake1_6fps"%(args.run, args.dataset), exist_ok=True)
         save_video_grid(sample_recon+0.5, os.path.join("./results/%d_%s"%(args.run, args.dataset), "fake1_6fps", f"video_%d.mp4"%(i)), nrow=1, fps=6)
-
-        os.makedirs("./results/%d_%s/fake1_30fps" % (args.run, args.dataset), exist_ok=True)
-        save_video_grid(sample_recon+0.5, os.path.join("./results/%d_%s" % (args.run, args.dataset), "fake1_30fps", f"video_%d.mp4" % (i)), nrow=1,fps=30)
 
         os.makedirs('./results/%d_%s/txt/'%(args.run, args.dataset), exist_ok=True)
         copyfile(batch['path'].replace("/mp4/", "/txt/").replace(".mp4", ".txt"), os.path.join('./results/%d_%s/txt/'%(args.run, args.dataset), 'groundtruth_%d.txt'%(i)))
