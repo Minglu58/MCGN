@@ -1,8 +1,6 @@
 """
 Generate a large batch of video samples from a model.
 """
-import sys
-sys.path.append('/fs/data/home/zhaoml_fengszlab/program/mcgn')
 import argparse
 import os
 import time
@@ -53,7 +51,7 @@ def main():
 
         pretrained_dict = {}
         for key, weight in original_model_dict.items():
-             # 跳过旧的双模态融合层（绝对不能加载！）
+             # 跳过旧的双模态融合层
             if "dualattention" in key:
                  continue
              # 匹配条件：新模型有这个key + 形状完全相同
@@ -71,7 +69,7 @@ def main():
                  else:
                      param.requires_grad = False
 
-             # 🔥 只训练时序 + 三模态融合
+             # 🔥 训练时序 + 三模态融合
              elif "transformers.2" in name or "tripleattention" in name or "temporal_conv" in name:
                  param.requires_grad = True
 
@@ -107,12 +105,6 @@ def main():
                        and p.requires_grad],
             "lr": args.lr,
             },
-        # 3. UNet基础卷积/嵌入层：中等学习率 = 基础lr × 0.3
-        # {
-        #     "params": [p for n, p in model.named_parameters()
-        #                 if "transformers" not in n and "tripleattention" not in n and "temporal_conv" not in n],
-        #         "lr": args.lr * 0.3,
-        # },
     ]
 
     logger.log("loading dataset...")
