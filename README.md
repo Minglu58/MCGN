@@ -37,7 +37,7 @@ You can download these processed datasets to `datasets` folder.
 - `model_path`: path to pre-trained checkpoint
 - `n_sample`: the number of videos need to be sampled
 - `text_stft_cond`: load text-audio-video data
-- `audio_emb_model`: model to encode audio, choices: `audioclip`, `wav2clip`, `beats`
+- `audio_emb_model`: model to encode audio, choices: `beats`
 - `text_emb_model`: model to encode text, choices: `bert`, `clip`
 - `data_path`: path to dataset, `post_URMP` for URMP-VAT dataset, and `post_landscape` for Landscape-VAT dataset
 - `load_vid_len`: for URMP-VAT, it is set to `90` (fps=30); for Landscape-VAT, it is set to `30` (fps=10)
