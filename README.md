@@ -1,6 +1,6 @@
 # MCGN
 
-This is the official implement of our MCGN model. We introduce Multimodal Collaborative Generative Network (MCGN), which integrates a Triple-Modality Cross-Interaction (TMCI) module, an Adaptive Multimodal Weight Allocation (AMWA) mechanism, and two cross-modal collaborators to enhance semantic alignment and temporal coherence.
+This is the official implement of our MCGN model. We introduce Multimodal Collaborative Generative Network (MCGN), which integrates a Triple-Modality Cross-Interaction (TMCI) module, an Adaptive Multimodal Weight Allocation (AMWA) module, and two cross-modal semantic aligners to enhance semantic alignment and temporal coherence.
 
 <img width="953" height="365" alt="colla_model" src="https://github.com/user-attachments/assets/96bb183c-2b33-4ea0-bdf8-d4d8ff3be861" />
 
