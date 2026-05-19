@@ -2,7 +2,7 @@
 
 This is the official implement of our MCGN model. We introduce Multimodal Collaborative Generative Network (MCGN), which integrates a Triple-Modality Cross-Interaction (TMCI) module, an Adaptive Multimodal Weight Allocation (AMWA) mechanism, and two cross-modal collaborators to enhance semantic alignment and temporal coherence.
 
-<img width="959" height="377" alt="colla_model" src="https://github.com/user-attachments/assets/20ec9a08-1c1f-4750-87f6-9e2df71e7063" />
+<img width="953" height="365" alt="colla_model" src="https://github.com/user-attachments/assets/96bb183c-2b33-4ea0-bdf8-d4d8ff3be861" />
 
 
 ## ⚙️ Setup
@@ -18,8 +18,9 @@ pip install -r requirements.txt
 
 | Dataset | checkpoint |
 | --------------- | --------------- |
-| URMP-VAT | [URMP_checkpoint](https://studentmust-my.sharepoint.com/:u:/g/personal/3220000901_student_must_edu_mo/IQA8dBW2H2MaTryYlgpSIzcHARUu6aMgNw0K-nUl19ExIs4?e=zw3iAO) 
-| Landscape-VAT | [Landscape_checkpoint](https://studentmust-my.sharepoint.com/:u:/g/personal/3220000901_student_must_edu_mo/IQApTEy0-TnASL6NaPUNaL28AVHNI_UBn81gWz4mcR06E4c?e=5agJGZ) 
+| URMP-VAT | [URMP_checkpoint](https://drive.google.com/file/d/17XTBvfhjHVZR5Boh1dkJK9Xaf_3SlXqF/view?usp=sharing) 
+| Landscape-VAT | [Landscape_checkpoint](https://drive.google.com/file/d/1Ra3kPlrarhDNlUOxdX0hy8Q3TbG4tM9f/view?usp=sharing) 
+| AIST++-VAT | [AIST_checkpoint](https://drive.google.com/file/d/1XnQSlrIIsMEET5gBQ0XcCo560O_SVfcK/view?usp=sharing) |
 
 3. Create a `vitlens` folder for downloading the omni-modal representations of multimodalities.
 
