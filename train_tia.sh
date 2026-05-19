@@ -10,11 +10,11 @@
 
 python scripts/train_tia.py --num_workers 8 \
                             --batch_size 2 \
-                            --data_path datasets/post_landscape/ \
-                            --load_vid_len 30 \
-                            --save_dir saved_ckpts/landscape/0509_ti_128 \
-                            --resolution 128 \
-                            --image_size 128 \
+                            --data_path datasets/YOUR_DATASETS \
+                            --load_vid_len 90 \
+                            --save_dir saved_ckpts/YOUR_SAVE_DIR \
+                            --resolution 64 \
+                            --image_size 64 \
                             --sequence_length 16 \
                             --text_stft_cond \
                             --audio_emb_model beats \
@@ -29,5 +29,4 @@ python scripts/train_tia.py --num_workers 8 \
                             --log_interval 50 \
                             --save_interval 5000 \
                             --gpus 1 \
-                            --use_temporal_conv False \
-                            --resume_checkpoint saved_ckpts/landscape/0509_ti_128/model230000.pt
+                            --use_temporal_conv False 
