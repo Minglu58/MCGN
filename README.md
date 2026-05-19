@@ -110,10 +110,6 @@ python calculation/fvd_fid/fid_pytorch.py --exp_tag 0_urmp --real_folder real --
 ```
 python calculation/audio_video_align.py --exp_tag 0_urmp --audio_folder audio --video_folder fake
 ```
-* **CLIP-audio**
-```
-python calculation/clip_score/clip_audio.py --exp_tag 0_urmp --audio_folder audio --video_folder fake
-```
 * **CLIP-text**
 ```
 python calculation/clip_score/clip_text.py --exp_tag 0_urmp --txt_folder txt --video_folder fake
