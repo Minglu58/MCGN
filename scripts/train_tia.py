@@ -1,8 +1,6 @@
 """
 Generate a large batch of video samples from a model.
 """
-import sys
-sys.path.append('/fs/data/home/zhaoml_fengszlab/program/mcgn')
 import argparse
 import os
 import time
