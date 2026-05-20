@@ -22,7 +22,7 @@ pip install -r requirements.txt
 | Landscape-VAT | [Landscape_checkpoint](https://drive.google.com/file/d/1Ra3kPlrarhDNlUOxdX0hy8Q3TbG4tM9f/view?usp=sharing) 
 | AIST++-VAT | [AIST_checkpoint](https://drive.google.com/file/d/1XnQSlrIIsMEET5gBQ0XcCo560O_SVfcK/view?usp=sharing) |
 
-3. Create a `vitlens` folder for downloading the omni-modal representations of multimodalities.
+3. (Training only) Create a `vitlens` folder for downloading the omni-modal representations of multimodalities.
 
 You can access the source at [Vit-Lens](https://github.com/TencentARC/ViT-Lens/tree/main/vitlens/src) repository.
 
